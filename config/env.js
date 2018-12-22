@@ -1,6 +1,5 @@
-// const baseUrl = 'https://'
 const baseUrl = "https://api.themoviedb.org/3/"
-const api_key = 'xxxxxxxxxxxxx'
+const api_key = 'xxxxxxxxxxxxxx'
 
 const envs = {
     API_KEY: api_key,
