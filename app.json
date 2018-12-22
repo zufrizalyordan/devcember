@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Devcember",
-    "slug": "Devcember",
+    "name": "Devcember - TMDB",
+    "slug": "devcember-tmdb",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": [

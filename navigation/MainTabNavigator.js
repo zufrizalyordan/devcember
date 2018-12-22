@@ -3,16 +3,17 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import TrendingScreen from '../screens/TrendingScreen';
+import CategoriesScreen from '../screens/CategoriesScreen';
+import MovieDetailScreen from '../screens/MovieDetailScreen';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const TrendingStack = createStackNavigator({
+  Trending: TrendingScreen,
+  MovieDetail: MovieDetailScreen
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+TrendingStack.navigationOptions = {
+  tabBarLabel: 'Trending',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -25,12 +26,12 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const CategoriesStack = createStackNavigator({
+  Category: CategoriesScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+CategoriesStack.navigationOptions = {
+  tabBarLabel: 'Kategori',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -39,22 +40,7 @@ LinksStack.navigationOptions = {
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
-  ),
-};
-
 export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+  TrendingStack,
+  CategoriesStack,
 });
