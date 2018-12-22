@@ -5,6 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import TrendingScreen from '../screens/TrendingScreen';
 import CategoriesScreen from '../screens/CategoriesScreen';
+import CategoryMoviesScreen from '../screens/CategoryMoviesScreen';
 import MovieDetailScreen from '../screens/MovieDetailScreen';
 
 const TrendingStack = createStackNavigator({
@@ -28,6 +29,8 @@ TrendingStack.navigationOptions = {
 
 const CategoriesStack = createStackNavigator({
   Category: CategoriesScreen,
+  CategoryMovies: CategoryMoviesScreen,
+  CategoryMovieDetail: MovieDetailScreen
 });
 
 CategoriesStack.navigationOptions = {

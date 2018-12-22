@@ -4,14 +4,14 @@ import {
   ActivityIndicator,
   FlatList,
   Text,
-  View,
-  Dimensions
+  View
 } from 'react-native'
 
 import API from '../services/API'
 import TrendingItem from './TrendingItem'
-import styles from './styles/index'
-class TrendingScreen extends Component {
+import styles from './styles'
+
+class CategoryMoviesScreen extends Component {
     static navigationOptions = {
         header: null,
     }
@@ -23,12 +23,14 @@ class TrendingScreen extends Component {
     }
 
     componentDidMount = async () => {
+        const genre = this.props.navigation.getParam('id')
         this.setState({
             isMounted: true,
             loading: true
         })
 
-        const resp = await API.getTrendingMovies()
+        const resp = await API.getMoviesByGenre(genre)
+
         this.setState({
             items: resp.results,
             loading: false
@@ -43,8 +45,9 @@ class TrendingScreen extends Component {
 
     render() {
         const { items, loading } = this.state
+        const genre = this.props.navigation.getParam('genre')
 
-        const trendingList = (loading) ? <ActivityIndicator style={styles.loading} size = "large" /> : <FlatList
+        const list = (loading) ? <ActivityIndicator style={styles.loading} size = "large" /> : <FlatList
                             data={items}
                             showsVerticalScrollIndicator={false}
                             renderItem={({ item }) =>
@@ -54,9 +57,9 @@ class TrendingScreen extends Component {
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.contentContainer}>
-                <View style={styles.containerBottom}>
-                    <Text style={styles.contentTitle}>Filem yang sedang 🔥👌</Text>
-                    {trendingList}
+                <View>
+                    <Text style={styles.contentTitle}>(😺)  Kategori {genre} </Text>
+                    {list}
                 </View>
                 </ScrollView>
             </View>
@@ -64,4 +67,4 @@ class TrendingScreen extends Component {
     }
 }
 
-export default TrendingScreen
+export default CategoryMoviesScreen

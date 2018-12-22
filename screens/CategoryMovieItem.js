@@ -3,11 +3,11 @@ import { StyleSheet, View, Text } from 'react-native'
 import Touchable from "react-native-platform-touchable";
 
 import styles from './styles'
-class TrendingItem extends Component {
+class CategoryMoviewItem extends Component {
     openDetail = () => {
         const id = this.props.id
         const title = this.props.original_title
-        this.props.navigate('MovieDetail', {
+        this.props.navigate('CategoryMovieDetail', {
             id,
             title
         })
@@ -26,4 +26,4 @@ class TrendingItem extends Component {
     }
 }
 
-export default TrendingItem
+export default CategoryMoviewItem

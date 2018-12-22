@@ -3,13 +3,14 @@ import { StyleSheet, View, Text } from 'react-native'
 import Touchable from "react-native-platform-touchable";
 
 import styles from './styles'
-class TrendingItem extends Component {
+
+class CategoryItem extends Component {
     openDetail = () => {
         const id = this.props.id
-        const title = this.props.original_title
-        this.props.navigate('MovieDetail', {
+        const genre = this.props.name
+        this.props.navigate('CategoryMovies', {
             id,
-            title
+            genre
         })
     }
 
@@ -17,8 +18,8 @@ class TrendingItem extends Component {
         return (
             <Touchable style={styles.listItem} onPress={this.openDetail}>
                 <View style={styles.textContainer}>
-                    <Text>
-                        {this.props.original_title}
+                    <Text >
+                        {this.props.name}
                     </Text>
                 </View>
             </Touchable>
@@ -26,4 +27,4 @@ class TrendingItem extends Component {
     }
 }
 
-export default TrendingItem
+export default CategoryItem

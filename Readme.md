@@ -19,4 +19,8 @@ Contoh aplikasi untuk DevCember event idin Bandung, menggunakan Expo dengan TMDB
 - `yarn start`
 - Ikuti perintah di `command line`, untuk menampilkan di iOS atau Android simulator
 
-### Publishing
+### Android Build
+`expo build:android`
+
+### iOS Build
+`expo build:ios`

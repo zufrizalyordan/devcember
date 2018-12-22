@@ -1,27 +1,67 @@
-import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import React, { Component } from 'react';
+import {
+  ScrollView,
+  ActivityIndicator,
+  FlatList,
+  Text,
+  View
+} from 'react-native'
 
-export default class LinksScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Links',
-  };
+import API from '../services/API'
+import CategoryItem from './CategoryItem'
+import styles from './styles'
 
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-        <ExpoLinksView />
-      </ScrollView>
-    );
-  }
+class CategoriesScreen extends Component {
+    static navigationOptions = {
+        header: null,
+    }
+
+    state = {
+        items: [],
+        isMounted: false,
+        loading: false
+    }
+
+    componentDidMount = async () => {
+        this.setState({
+            isMounted: true,
+            loading: true
+        })
+
+		const resp = await API.getGenres()
+        this.setState({
+            items: resp.genres,
+            loading: false
+        })
+    }
+
+    componentWillUnmount = () => {
+        this.setState({
+            isMounted: false,
+        })
+    }
+
+    render() {
+        const { items, loading } = this.state
+
+        const list = (loading) ? <ActivityIndicator style={styles.loading} size = "large" /> : <FlatList
+                            data={items}
+                            showsVerticalScrollIndicator={false}
+                            renderItem={({ item }) =>
+                                <CategoryItem {...item} navigate={this.props.navigation.navigate}/>}
+                            keyExtractor={item => item.id.toString()}
+                        />
+        return (
+            <View style={styles.container}>
+                <ScrollView style={styles.contentContainer}>
+                <View>
+                    <Text style={styles.contentTitle}>(😺)  Kategori Filem</Text>
+                    {list}
+                </View>
+                </ScrollView>
+            </View>
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-});
+export default CategoriesScreen
